@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="website.css">
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+    <a href="javascript:void(0);" class="icon" onclick="topNavResponse()">
+        <i class="fa fa-bars"></i>
+    </a>
+    <a href="contact.html">Contact</a>
+    <a href="projects.html" class="active">Projects</a>
+    <a href="about.html">About</a>
+    <a href="index.html">Home</a>
+    <a href="index.html" class="nameText" style="float: left">Owen Leather</a>
+</div>
+
+<div class="blog">
+    <h1>Drones</h1>
+    <div class="slideshow">
+        <div class="mySlides">
+            <div class="numbertext">1 / 2</div>
+            <img src="images/drone/IMG-4158.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">2 / 2</div>
+            <video src="videos/IMG-4186.MOV" style="width:100%" autoplay muted loop>
+        </div>
+
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <div class="caption-container">
+            <p id="caption"></p>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <img class="demo cursor" src="images/drone/IMG-4158.jpg" style="width:100%" onclick="currentSlide(1)"
+                     alt="Assembled Drone">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="images/drone/IMG-4186_Moment.jpg" style="width:100%"
+                     onclick="currentSlide(2)"
+                     alt="Teathered Drone Flying">
+            </div>
+        </div>
+    </div>
+    <h3>Story:</h3>
+    <p style="text-align: justify">Due to the COVID-19 Pandemic, FIRST Robotics Team 1351 was forced to operate at home
+        through
+        online meetings for a majority of the 2021 season. As a result, we wanted to come up with some fun projects that
+        the
+        students could do at home. Myself and a few other team leaders put together an unofficial drone challenge in our
+        team, where small groups of 3-4 students would design, build, and program their own drones. They were able to
+        individually take parts and work on it from home, and each week we transferred supplies from house to house
+        while making sure to be COVID-safe. Drones are very different
+        than the usual robots that the team builds, so it was a fun challenge for the students while also being small
+        enough to work on from home.</p>
+    <br>
+    <p style="text-align: justify">Myself and the other team leaders created criteria for the drone challenge, provided
+        an
+        education curriculum about drone design to the students, and mentored the small teams that participated in the
+        challenge. I helped with planning the electronics and control systems of the
+        drone. We ended up putting together 4 teams of students who were interested, and even got one drone to fly
+        by the end of the 2021 season! We plan to continue the drones at the beginning of the 2022 season as a side
+        project to hopefully get more off the ground. </p>
+    <br>
+    <p style="text-align: justify">The structure of the drones were 100% 3D printed, and consisted of a raspberry pi for
+        the control board, four
+        quadcopter motors, and various altitude, gyroscope, and accelerometer sensors. They were all designed,
+        manufactured, and assembled from scratch by students on the team.</p>
+    <br>
+</div>
+
+<footer class="bottomBar">
+    <div style="text-align: left">
+        <p>Owen Leather</p>
+        <p><i class="fa fa-github"></i> <a href="https://github.com/OLeather" target="_blank">Github</a></p>
+        <p><i class="fa fa-envelope"></i> <a href="mailto:owenleather@outlook.com" target="_blank">owenleather@outlook.com</a>
+        </p>
+    </div>
+    <div style="text-align: right; position:absolute; right: 15%; top:0">
+        <p><a href="index.html">Home</a></p>
+        <p><a href="about.html">About Me</a></p>
+        <p><a href="projects.html">Projects</a></p>
+        <p><a href="contact.html">Contact</a></p>
+    </div>
+</footer>
+
+<script src="website.js"></script>
+</body>
+</html>

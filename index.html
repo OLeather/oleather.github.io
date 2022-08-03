@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="website.css">
+</head>
+<body>
+<div class="topnav" id="myTopnav" style="z-index: 1;">
+    <a href="javascript:void(0);" class="icon" onclick="topNavResponse()">
+        <i class="fa fa-bars"></i>
+    </a>
+    <a href="contact.html">Contact</a>
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="index.html" class="nameText" style="float: left">Owen Leather</a>
+</div>
+
+<div class="mainSlideshow" style="top:8vh; width:50%; left:25%">
+    <div class="mySlides">
+        <div class="numbertext">1 / 5</div>
+        <img src="images/cv/computer-vision-thumbnail.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+        <div class="numbertext">2 / 5</div>
+        <img src="images/cv/main-video-1_Moment.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+        <div class="numbertext">3 / 5</div>
+        <img src="images/guitar/guitar-closeup.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+        <div class="numbertext">4 / 5</div>
+        <img src="images/cnc/IMG-4377.jpg" style="width:100%" alt="">
+    </div>
+
+    <div class="mySlides">
+        <div class="numbertext">5 / 5</div>
+        <img src="images/motion/motion-control-thumbnail.jpg" style="width:100%">
+    </div>
+    <div class="main-caption-container" style="display: block" id="caption1">
+        <h1>Project Showcase:</h1>
+        <h2>Computer Vision</h2>
+        <form action="computer-vision.html">
+            <input type="submit" value="Read More" />
+        </form>
+    </div>
+    <div class="main-caption-container" style="display: none"id="caption2">
+        <h1>Project Showcase:</h1>
+        <h2>Computer Vision</h2>
+        <form action="computer-vision.html">
+            <input type="submit" value="Read More" />
+        </form>
+    </div>
+    <div class="main-caption-container" style="display: none" id="caption3">
+        <h1>Project Showcase:</h1>
+        <h2>Custom Built Guitar</h2>
+        <form action="guitar.html">
+            <input type="submit" value="Read More" />
+        </form>
+    </div>
+    <div class="main-caption-container" style="display: none" id="caption4">
+        <h1>Project Showcase:</h1>
+        <h2>Homemade CNC Machine</h2>
+        <form action="cnc.html">
+            <input type="submit" value="Read More" />
+        </form>
+    </div>
+    <div class="main-caption-container" style="display: none" id="caption5">
+        <h1>Project Showcase:</h1>
+        <h2>Robot Motion Control</h2>
+        <form action="motion-control.html">
+            <input type="submit" value="Read More" />
+        </form>
+    </div>
+
+    <a class="prev" onclick="plusSlidesNav(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlidesNav(1)">&#10095;</a>
+
+    <div class="mainSlideshowNavBars">
+        <a class="activeNavBar" id="nav1" onclick="currentSlideNav(1)"></a>
+        <a class="mainSlideshowNavBar" id="nav2" onclick="currentSlideNav(2)"></a>
+        <a class="mainSlideshowNavBar" id="nav3" onclick="currentSlideNav(3)"></a>
+        <a class="mainSlideshowNavBar" id="nav4" onclick="currentSlideNav(4)"></a>
+        <a class="mainSlideshowNavBar" id="nav5" onclick="currentSlideNav(5)"></a>
+    </div>
+
+
+</div>
+
+<!--<video autoplay muted id="mainVideo" onended="playNextVideo();">-->
+<!--    <source id="mainVideoSource" src="videos/main-video-1.mp4" type="video/mp4">-->
+<!--</video>-->
+
+<!--<div class="infoPanel">-->
+<!--    <h3>Project Showcase:</h3>-->
+<!--    <a id="showcaseText1" class="activeShowcase" onclick="playVideo(0);">Computer Vision Guided Slider Alignment</a>-->
+<!--    <a id="showcaseText2" onclick="playVideo(1);">Computer Vision Target Detection</a>-->
+<!--    <a id="showcaseText3" onclick="playVideo(2);">Autonomous Robot Spline Following</a>-->
+<!--    <a id="showcaseText4" onclick="playVideo(3);">CNC Routing Guitar Neck</a>-->
+<!--    <a id="showcaseText5" onclick="playVideo(4);">Computer Vision and Robot Dynamics Guided Ball Shooter</a>-->
+<!--    <a id="showcaseText6" onclick="playVideo(6);">Computer Vision and Robot Dynamics Guided Rotating Turret</a>-->
+<!--    <a id="showcaseText7" onclick="playVideo(7);">Homemade CNC Machine</a>-->
+<!--</div>-->
+<div class="aboutSection">
+    <div class="side-image">
+        <img src="images/IMG-4378.jpg" alt="alt text" height="800" style="padding-left: 10px; padding-right: 10px" >
+        <div>
+            <h1>About Me</h1>
+            <p>Hi, my name is Owen Leather. I enjoy computer science, mechanical engineering, woodworking, and playing
+                guitar.</p>
+            <p>I have participated in the FIRST Robotics Competition for 3 years. I am now a mentor for FRC Team 1351.</p>
+            <p>I currently work as a software engineering intern at iMetalx.</p>
+            <br>
+            <h3>Software Experience [years]:</h3>
+            <p>Programming Languages: Java [8], Kotlin [2], Python [4], C++ [3], C# [4]</p>
+            <p>CAD/3D Software: Fusion 360 [4], Blender, [6]</p>
+            <p>Game Engines: Unreal Engine [1], Unity 3D [4]</p>
+            <p>Manufacturing: 3D Printing [3], CNC CAM [2]</p>
+            <br>
+            <h3>Awards:</h3>
+            <h4>As the lead autonomous software developer on FIRST Robotics team 1351, I helped our team win the following awards:</h4>
+            <p>Calgames Robotics Competition 2019 Autonomous Award</p>
+            <p>FIRST Infinite Recharge at Home 2021 Autonomous Award sponsored by Ford</p>
+            <p>Monterey Bay Regional 2022 Innovation in Controls Award</p>
+            <br>
+        </div>
+
+    </div>
+</div>
+<footer class="bottomBar">
+    <div style="text-align: left">
+    <p>Owen Leather</p>
+    <p> <i class="fa fa-github"></i> <a href="https://github.com/OLeather" target="_blank">Github</a>  </p>
+    <p> <i class="fa fa-envelope"></i> <a href="mailto:owenleather@outlook.com" target="_blank">owenleather@outlook.com</a> </p>
+    </div>
+    <div style="text-align: right; position:absolute; right: 15%; top:0">
+        <p><a href="index.html">Home</a></p>
+        <p><a href="about.html">About Me</a></p>
+        <p><a href="projects.html">Projects</a></p>
+        <p><a href="contact.html">Contact</a></p>
+    </div>
+</footer>
+
+<script src="website.js"></script>
+</body>
+</html>
