@@ -152,7 +152,6 @@ body {
     padding-bottom: 10vh;
 }
 
-
 body {
     color: white;
 }
@@ -166,6 +165,10 @@ p{
 }
 
 .blog a{
+    color: var(--link-color)
+}
+
+.blog-code-embed a{
     color: var(--link-color)
 }
 
