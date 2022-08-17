@@ -146,15 +146,13 @@
         turret mechanism to lock onto a target on the field to shoot balls into, and could even score balls into the
         target while the robot was
         in motion. The system worked by combining computer vision 3D position calculations with onboard sensors
-        measuring the drivetrain's position to create an accurate field-relative estimation of the robot's position. The
-        sensors were combined using a Kalman Filter, which is a statistical filter that prioritizes the short term of
-        our less noisy but drift-prone onboard encoder sensors with the long term of our more noisy but absolute
-        position from computer vision. Using a good estimation of the robot's state on the field (including absolute
-        position and velocity), the turret could be aimed at a target location on the field and stay pointed at it, and
-        could
-        even my given compensation commands to counteract the robot's motion to still score balls while it is in
-        motion. The result was a vert robust turret lock system that ensured the robot would score balls in the target
-        no matter where it was or how it was moving.</p>
+        measuring the drivetrain's velocity to create an accurate field-relative estimation of the robot's position. The
+        sensors were combined using a Kalman Filter, which combines the noisy but absolute
+        position from computer vision localization with the less noisy but drift-prone onboard encoder sensors to
+        calculate the most likely position at any given time. Using a good estimation of the robot's state on the field
+        (including absolute position and velocity), a control loop was developed to allow the turret to be aimed at a target location on the field  and
+        even counteract the robot's motion to score balls while the robot is in
+        motion.</p>
     <h4>Awards</h4>
     <div style="
     position: relative;
