@@ -143,6 +143,16 @@ body {
     padding-bottom: 10vh;
 }
 
+.blog-code-embed{
+    text-align: left;
+    position:relative;
+    top:10vh;
+    left: 25%;
+    width: 50%;
+    padding-bottom: 10vh;
+}
+
+
 body {
     color: white;
 }

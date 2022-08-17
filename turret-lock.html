@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="website.css">
+</head>
+<body>
+<div class="topnav" id="myTopnav">
+    <a href="javascript:void(0);" class="icon" onclick="topNavResponse()">
+        <i class="fa fa-bars"></i>
+    </a>
+    <a href="contact.html">Contact</a>
+    <a href="projects.html" class="active">Projects</a>
+    <a href="about.html">About</a>
+    <a href="index.html">Home</a>
+    <a href="index.html" class="nameText" style="float: left">Owen Leather</a>
+</div>
+
+<div class="blog-code-embed">
+    <h1 style="text-align: center">Turret Lock Project</h1>
+    <div class="slideshow">
+        <div class="mySlides">
+            <div class="numbertext">1 / 2</div>
+            <video src="videos/robot-video.mp4" style="width:100%" autoplay muted loop></video>
+        </div>
+        <div class="mySlides">
+            <div class="numbertext">2 / 2</div>
+            <video src="videos/IMG-4064.mp4" style="width:100%" autoplay muted loop></video>
+        </div>
+
+
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <div class="caption-container">
+            <p id="caption"></p>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <img class="demo cursor" src="images/cv/main-video-5_Moment.jpg" style="width:100%"
+                     onclick="currentSlide(1)" alt="Turret Lock In Action">
+            </div>
+            <div class="column">
+                <img class="demo cursor" src="images/motion/Screenshot 2022-08-16 222404.png" style="width:100%"
+                     onclick="currentSlide(2)" alt="Kalman Filter Pose Estimator">
+            </div>
+        </div>
+    </div>
+
+    <h4 style="text-align: center">Turret Lock System</h4>
+    <p style="text-align: justify">During the 2021 season, I developed a turret lock system that allowed our robot's
+        turret mechanism to lock onto a target on the field to shoot balls into, and could even score balls into the
+        target while the robot was
+        in motion. The system worked by combining computer vision 3D position calculations with onboard sensors
+        measuring the drivetrain's velocity to create an accurate field-relative estimation of the robot's position. The
+        sensors were combined using a Kalman Filter, which combines the noisy but absolute
+        position from computer vision localization with the less noisy but drift-prone onboard encoder sensors to
+        calculate the most likely position at any given time. Using a good estimation of the robot's state on the field
+        (including absolute position and velocity), a control loop was developed to allow the turret to be aimed at a target location on the field  and
+        even counteract the robot's motion to score balls while the robot is in
+        motion.</p>
+    <h4 style="text-align: center">Source Code</h4>
+    <p style="text-align: justify">The main turret control loop is found under <a
+            href="https://github.com/MittyRobotics/tko2020/blob/c16df7195f4e10d1a7d97ec1ba8e98f49038f9f1/src/main/java/com/github/mittyrobotics/autonomous/Autonomous.java">Autonomous.java</a>
+        file in the GitHub repository for our team's 2020-2021 robot. The Autonomous service deals with controlling the
+        turret and shooter subsystems based on the turret lock control algorithm. It relies upon the <a
+                href="https://github.com/MittyRobotics/tko2020/blob/c16df7195f4e10d1a7d97ec1ba8e98f49038f9f1/src/main/java/com/github/mittyrobotics/autonomous/util/RobotPositionTracker.java">RobotPositionTracker.java</a>
+        service which is a kalman filter-based pose estimator. It also uses the <a
+                href="https://github.com/MittyRobotics/tko2020/blob/c16df7195f4e10d1a7d97ec1ba8e98f49038f9f1/src/main/java/com/github/mittyrobotics/autonomous/Vision.java">Vision.java</a>
+        service which localizes the robot according to perceived vision targets. The code relies upon my controls library, <a href="https://github.com/MittyRobotics/tko-libraries-legacy">tko-libraries-legacy</a> for mathematics helper functions, geometry classes, and robot kinematics calculations. </p>
+    <h4 style="text-align: center">Explanation of Code</h4>
+    <p style="text-align: justify">The first step of the turret lock system is to collect all the data required for the
+        control loops. Most notably, the current pose and dynamics estimations are gathered from the
+        RobotPositionTracker service, as well as info about the vision target's perceived location from the Vision
+        service. Future robot pose is also roughly predicted given current robot dynamics, which is used for a velocity
+        feedforward on the turret.</p>
+    <script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2FMittyRobotics%2Ftko2020%2Fblob%2Fc16df7195f4e10d1a7d97ec1ba8e98f49038f9f1%2Fsrc%2Fmain%2Fjava%2Fcom%2Fgithub%2Fmittyrobotics%2Fautonomous%2FAutonomous.java%23L52-L90&style=dark&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on"></script>
+    <p style="text-align: justify">The RobotPositionTracker service uses a simplified kalman filter that estimates 2D
+        field pose based on drivetrain kinematics and computer vision 3D localization. Shown below are the input
+        functions for kinematics state measurements and vision measurements.</p>
+    <script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2FMittyRobotics%2Ftko2020%2Fblob%2Fc16df7195f4e10d1a7d97ec1ba8e98f49038f9f1%2Fsrc%2Fmain%2Fjava%2Fcom%2Fgithub%2Fmittyrobotics%2Fautonomous%2Futil%2FRobotPositionTracker.java%23L137-L157&style=dark&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on"></script>
+    <p style="text-align: justify">The Vision service uses the 2D coordinates of the target from the vision camera and
+        some physical parameters of the target (i.e., it's height from the ground and location on the field) to derive a
+        3D pose estimation. That is used by the RobotPositionTracker's kalman filter as a global pose estimate. Safety
+        checks are also done to ensure vision data is recent and reasonable compared to previous data and known
+        constants of the field. If vision data is not currently safe to use, the pose estimator can continue to run
+        using only drivetrain kinematics state estimates, and will be corrected as soon as vision data is safe
+        again. </p>
+    <script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2FMittyRobotics%2Ftko2020%2Fblob%2Fc16df7195f4e10d1a7d97ec1ba8e98f49038f9f1%2Fsrc%2Fmain%2Fjava%2Fcom%2Fgithub%2Fmittyrobotics%2Fautonomous%2FVision.java%23L39-L80&style=dark&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on"></script>
+    <p style="text-align: justify">The control loops for both the shooter flywheel and the turret subsystems are below.
+        The shooter uses a simplified control loop that is simply shifted up or down linearly according to the
+        perpendicular component of the robot's velocity relative to the target. This was deemed acceptable given the
+        normal operation of the system. The turret control loop is a multi-stage cascade control loop utilizing
+        primarily PID loops. It controls the turret using a main position loop and a secondary velocity loop. It aims to
+        first counteract the robot's angular velocity to maintain a constant heading in space, then adjusts the heading
+        to point towards the target's 3D location in space, then compensates for ball trajectory in air by shifting left
+        or right based on the robot's parallel velocity component to the target. Finally, future predicted motion is
+        used as a velocity feedforward to improve tracking accuracy while the robot is in motion.</p>
+    <script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2FMittyRobotics%2Ftko2020%2Fblob%2Fc16df7195f4e10d1a7d97ec1ba8e98f49038f9f1%2Fsrc%2Fmain%2Fjava%2Fcom%2Fgithub%2Fmittyrobotics%2Fautonomous%2FAutonomous.java%23L92-L134&style=dark&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on"></script>
+    <br>
+</div>
+
+<footer class="bottomBar">
+    <div style="text-align: left">
+        <p>Owen Leather</p>
+        <p><i class="fa fa-github"></i> <a href="https://github.com/OLeather" target="_blank">Github</a></p>
+        <p><i class="fa fa-envelope"></i> <a href="mailto:owenleather@outlook.com" target="_blank">owenleather@outlook.com</a>
+        </p>
+    </div>
+    <div style="text-align: right; position:absolute; right: 15%; top:0">
+        <p><a href="index.html">Home</a></p>
+        <p><a href="about.html">About Me</a></p>
+        <p><a href="projects.html">Projects</a></p>
+        <p><a href="contact.html">Contact</a></p>
+    </div>
+</footer>
+
+<script src="website.js"></script>
+</body>
+</html>
