@@ -38,7 +38,7 @@ siteMeta =
              }
 
 outputFolder :: FilePath
-outputFolder = "site/"
+outputFolder = "docs/"
 
 generatedFolder :: FilePath
 generatedFolder = "src/generated/"
