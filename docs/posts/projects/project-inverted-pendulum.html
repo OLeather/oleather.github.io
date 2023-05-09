@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <title>Inverted Pendulum</title>
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script>
+        // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
+        if (
+          localStorage.getItem('color-theme') === 'dark' ||
+          (!('color-theme' in localStorage) &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      </script>
+</head>
+    <body class="bg-slate-100 dark:bg-slate-800 mb-10">
+        <nav class="bg-gray-200 dark:bg-gray-900 fixed w-full z-20 top-0 left-0">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="/index.html" class="flex items-center">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">OL</span>
+                </a>
+                <div class="flex md:order-2">
+                    <!-- Dark mode switcher -->
+                    <button
+                    id="theme-toggle"
+                    type="button"
+                    class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-900 rounded-lg text-sm p-2.5"
+                  >
+                    <svg
+                      id="theme-toggle-dark-icon"
+                      class="w-8 h-8 hidden"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                      ></path>
+                    </svg>
+                    <svg
+                      id="theme-toggle-light-icon"
+                      class="w-8 h-8 hidden"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </button>
+                  <!-- Dark mode switcher end -->
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                    <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-200 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li>
+                        <a href="/index.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+                        </li>
+                        <li>
+                        <a href="/about.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About Me</a>
+                      </li>
+                        <li>
+                        <a href="/projects.html" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500">Projects</a>
+                      </li>    
+                        <li>
+                            <a href="https://github.com/OLeather">
+                                <img class="w-6 h-6 invert dark:invert-0" src="/images/github-mark.svg" alt="user photo">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/owenleather/">
+                                <img class="w-6 h-6 invert dark:invert-0" src="/images/linkedin-in.svg" alt="user photo">
+                            </a>
+                        </li>       
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <script src="/js/main.js"></script>        <div id="contentDiv" class="max-w-screen-xl flex flex-wrap items-center gap-4 mx-auto pt-10 columns-1" style="margin-top: 68px">
+        <h1 id="inverted-pendulum-controls">Inverted Pendulum Controls</h1>
+<video src="/images/videos/Figure_1_2022-08-19_16-13-00.mp4" class="h-96 aspect-video" controls="">
+</video>
+<h4 id="linear-state-space-control-of-inverted-pendulum">Linear State Space Control of Inverted Pendulum</h4>
+<p>I have been learning about modern control theory through online resources such as <a href="https://www.youtube.com/watch?v=Pi7l8mMjYVE&amp;list=PLMrJAkhIeNNR20Mz-VpzgfQs5zrYi085m">Steve Bruntun's Controls Bootcamp</a>. As an exercise to apply my learning of state space and model predictive control, I worked on a project to stabilize an inverted pendulum on a cart -- a classic controls project. I did multiple exercises, including linear state space control, linearized model predictive control, and nonlinear model predictive control. The code can be found on my public repo <i class="fa fa-github"></i> <a href="https://github.com/OLeather/controls-project">controls-project</a>.</p>
+<h2 id="linear-state-space">Linear State Space</h2>
+<p>I derived the following linearized state space model of the inverted pendulum on the cart. The model is linearized in the up position to allow for balancing.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>x <span class="op">=</span> np.matrix([[<span class="op">-</span><span class="dv">2</span>],  <span class="co"># x</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>                [<span class="dv">0</span>],  <span class="co"># x_dot</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>                [pi<span class="fl">+.1</span>],  <span class="co"># theta</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>                [<span class="dv">0</span>]])  <span class="co"># theta_dot</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a>    s <span class="op">=</span> <span class="dv">1</span>  <span class="co"># pendulum up (1) or down (-1)</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="co"># Linearized system matrices</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>    A <span class="op">=</span> np.matrix([[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb1-10"><a href="#cb1-10"></a>                   [<span class="dv">0</span>, <span class="op">-</span>d <span class="op">/</span> M, s <span class="op">*</span> m <span class="op">*</span> g <span class="op">/</span> M, <span class="dv">0</span>],</span>
+<span id="cb1-11"><a href="#cb1-11"></a>                   [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>],</span>
+<span id="cb1-12"><a href="#cb1-12"></a>                   [<span class="dv">0</span>, <span class="op">-</span>s <span class="op">*</span> d <span class="op">/</span> (M <span class="op">*</span> L), <span class="op">-</span>s <span class="op">*</span> (m <span class="op">+</span> M) <span class="op">*</span> g <span class="op">/</span> (M <span class="op">*</span> L), <span class="dv">0</span>]])</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    B <span class="op">=</span> np.matrix([[<span class="dv">0</span>],</span>
+<span id="cb1-15"><a href="#cb1-15"></a>                   [<span class="dv">1</span> <span class="op">/</span> M],</span>
+<span id="cb1-16"><a href="#cb1-16"></a>                   [<span class="dv">0</span>],</span>
+<span id="cb1-17"><a href="#cb1-17"></a>                   [s <span class="op">*</span> <span class="dv">1</span> <span class="op">/</span> (M <span class="op">*</span> L)]])</span></code></pre></div>
+<p>I then implemented both pole placement and a linear quadratic regulator to derive the control gain used in the state space control law. <i class="fa fa-github"></i> <a href="https://github.com/OLeather/controls-project/blob/main/pendulum_cart.py">pendulum_cart.py</a></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Linear Quadratic Regulator control gain</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>K <span class="op">=</span> lqr_d(Ad, Bd, Q, R)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># Control law</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>u <span class="op">=</span> <span class="op">-</span>K <span class="op">*</span> (x <span class="op">-</span> x_ref)</span></code></pre></div>
+<h2 id="mpc">MPC</h2>
+<p>I implemented model predictive control using the numerical optimization libraries <a href="https://www.cvxpy.org/">cvxpy</a> and <a href="https://web.casadi.org/">CasADI</a>. For both applications, I implemented the model of the system (either linearized or nonlinear), and optimized the control laws over a finite time horizon.</p>
+<p>The linearized optimization problem used the linearized state space model derived for the state space application. It then optimized the control law over the time horizon to minimize state error and remain balanced. I used cvxpy, a convex optimization library, to implement the linear optimization. <i class="fa fa-github"></i> <a href="https://github.com/OLeather/controls-project/blob/main/pendulum_cart_mpc.py">pendulum_cart_mpc.py</a></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>x_traj <span class="op">=</span> cvxpy.Variable((<span class="bu">len</span>(x0), T <span class="op">+</span> <span class="dv">1</span>))  <span class="co"># Optimized state over time horizon</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>u_traj <span class="op">=</span> cvxpy.Variable((<span class="dv">1</span>, T))  <span class="co"># Optimized control input over time horizon</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>cost <span class="op">=</span> <span class="dv">0</span> <span class="co"># Cost variable</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>constraints <span class="op">=</span> [] <span class="co"># Optimizer constraints</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(T):</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="co"># Quad form cost variable to minimize total state error and total force</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>    cost <span class="op">+=</span> cvxpy.quad_form(x_traj[:, t <span class="op">+</span> <span class="dv">1</span>], Q)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>    cost <span class="op">+=</span> cvxpy.quad_form(u_traj[:, t], R)</span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a>    <span class="co"># X_k+1 = Ad*X_k + Bd*U_k</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>    constraints <span class="op">+=</span> [x_traj[:, t <span class="op">+</span> <span class="dv">1</span>] <span class="op">==</span> Ad <span class="op">@</span> x_traj[:, t] <span class="op">+</span> Bd <span class="op">@</span> u_traj[:, t]]</span>
+<span id="cb3-14"><a href="#cb3-14"></a></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co"># Initial state = x0 - x_goal</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>constraints <span class="op">+=</span> [x_traj[:, <span class="dv">0</span>] <span class="op">==</span> x0[:, <span class="dv">0</span>] <span class="op">-</span> np.asarray(x_goal)[:, <span class="dv">0</span>]]</span>
+<span id="cb3-17"><a href="#cb3-17"></a></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co"># Minimize cost function for optimal control trajectory u</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a>prob <span class="op">=</span> cvxpy.Problem(cvxpy.Minimize(cost), constraints)</span></code></pre></div>
+<p>For the nonlinear optimization problem, I used the nonlinear ordinary differential equation representation of the dynamics of the pendulum cart. This allows for additional control, such as swing up and swing down, which were not possible with the linearized model.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Nonlinear model of the inverted pendulum on a cart</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>x_dot <span class="op">=</span> vertcat(x[<span class="dv">1</span>],</span>
+<span id="cb4-3"><a href="#cb4-3"></a>                (<span class="op">-</span>m <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> L <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> g <span class="op">*</span> cos(x[<span class="dv">2</span>]) <span class="op">*</span> sin(x[<span class="dv">2</span>]) <span class="op">+</span> m <span class="op">*</span> L <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> (</span>
+<span id="cb4-4"><a href="#cb4-4"></a>                        m <span class="op">*</span> L <span class="op">*</span> x[<span class="dv">3</span>] <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> sin(x[<span class="dv">2</span>]) <span class="op">-</span> d <span class="op">*</span> x[<span class="dv">1</span>]) <span class="op">+</span> m <span class="op">*</span> L <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> u) <span class="op">/</span> (</span>
+<span id="cb4-5"><a href="#cb4-5"></a>                        m <span class="op">*</span> L <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> (M <span class="op">+</span> m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> cos(x[<span class="dv">2</span>]) <span class="op">**</span> <span class="dv">2</span>))),</span>
+<span id="cb4-6"><a href="#cb4-6"></a>                x[<span class="dv">3</span>],</span>
+<span id="cb4-7"><a href="#cb4-7"></a>                ((m <span class="op">+</span> M) <span class="op">*</span> m <span class="op">*</span> g <span class="op">*</span> L <span class="op">*</span> sin(x[<span class="dv">2</span>]) <span class="op">-</span> m <span class="op">*</span> L <span class="op">*</span> cos(x[<span class="dv">2</span>]) <span class="op">*</span> (</span>
+<span id="cb4-8"><a href="#cb4-8"></a>                        m <span class="op">*</span> L <span class="op">*</span> x[<span class="dv">2</span>] <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> sin(x[<span class="dv">2</span>]) <span class="op">-</span> d <span class="op">*</span> x[<span class="dv">1</span>]) <span class="op">-</span> m <span class="op">*</span> L <span class="op">*</span> cos(x[<span class="dv">2</span>]) <span class="op">*</span> u) <span class="op">/</span> (</span>
+<span id="cb4-9"><a href="#cb4-9"></a>                        m <span class="op">*</span> L <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> (M <span class="op">+</span> m <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> cos(x[<span class="dv">2</span>]) <span class="op">**</span> <span class="dv">2</span>))))</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a>ode <span class="op">=</span> {<span class="st">&#39;x&#39;</span>: x, <span class="st">&#39;p&#39;</span>: u, <span class="st">&#39;ode&#39;</span>: x_dot}</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># System model is an integration of the ode</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>SysModel <span class="op">=</span> integrator(<span class="st">&#39;F&#39;</span>, <span class="st">&#39;rk&#39;</span>, ode, {<span class="st">&#39;tf&#39;</span>: T <span class="op">/</span> N})</span></code></pre></div>
+<p>I used the numeric optimization library CasADI to setup the nonlinear optimization problem, and optimized using a similar method as linear MPC by minimizing the sum squared error over a time horizon to derive the next optimal control input. The optimization parameters I used are shown below:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Setup optimizer variables</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>x_traj_param <span class="op">=</span> opti.variable(<span class="dv">4</span>, N <span class="op">+</span> <span class="dv">1</span>)  <span class="co"># Optimized state over time horizon</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>u_traj_param <span class="op">=</span> opti.variable(<span class="dv">1</span>, N)  <span class="co"># Optimized control input over time horizon</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>x0_param <span class="op">=</span> opti.parameter(<span class="dv">4</span>, <span class="dv">1</span>)  <span class="co"># Initial state parameter</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>x_goal_param <span class="op">=</span> opti.parameter(<span class="dv">4</span>, <span class="dv">1</span>)  <span class="co"># Goal state parameter</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># Setup minimization objective to minimize overall force used</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>opti.minimize(sumsqr(u_traj_param))</span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co"># Set optimization constraints</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, N):</span>
+<span id="cb5-12"><a href="#cb5-12"></a>    <span class="co"># X_k+1 = SysModel(X_k, U_k)</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>    opti.subject_to(x_traj_param[:, k <span class="op">+</span> <span class="dv">1</span>] <span class="op">==</span> SysModel(x0<span class="op">=</span>x_traj_param[:, k], p<span class="op">=</span>u_traj_param[:, k])[<span class="st">&quot;xf&quot;</span>])</span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co"># Initial state in trajectory = x0</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>opti.subject_to(x_traj_param[:, <span class="dv">0</span>] <span class="op">==</span> x0_param)</span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co"># Final state in trajectory = x_goal</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>opti.subject_to(x_traj_param[:, <span class="dv">-1</span>] <span class="op">==</span> x_goal_param)</span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="co"># Constrain u to between min and max bounds</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>opti.subject_to(Opti_bounded(<span class="op">-</span>u_max, u_traj_param, u_max))</span></code></pre></div>
+<video src="/images/videos/Figure_1_2022-08-22_18-47-37 (1).mp4" class="h-96 aspect-video" controls="">
+</video>
+<h4 id="nonlinear-model-predictive-control-swing-up-and-balancing">Nonlinear Model Predictive Control Swing Up and Balancing</h4>
+        </div>
+
+    </body>
+    <script src="/js/post.js"></script>
+</html>
