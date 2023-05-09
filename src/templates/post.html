@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script>
+        // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
+        if (
+          localStorage.getItem('color-theme') === 'dark' ||
+          (!('color-theme' in localStorage) &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      </script>
+</head>
+    <body class="bg-slate-100 dark:bg-slate-800 mb-10">
+        {{>src/generated/nav.html}}
+        <div id="contentDiv" class="max-w-screen-xl flex flex-wrap items-center gap-4 mx-auto pt-10 columns-1" style="margin-top: 68px">
+        {{{content}}}
+        </div>
+
+    </body>
+    <script src="/js/post.js"></script>
+</html>

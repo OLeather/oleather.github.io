@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <title>Motion Control</title>
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script>
+        // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
+        if (
+          localStorage.getItem('color-theme') === 'dark' ||
+          (!('color-theme' in localStorage) &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      </script>
+</head>
+    <body class="bg-slate-100 dark:bg-slate-800 mb-10">
+        <nav class="bg-gray-200 dark:bg-gray-900 fixed w-full z-20 top-0 left-0">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="/index.html" class="flex items-center">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">OL</span>
+                </a>
+                <div class="flex md:order-2">
+                    <!-- Dark mode switcher -->
+                    <button
+                    id="theme-toggle"
+                    type="button"
+                    class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-900 rounded-lg text-sm p-2.5"
+                  >
+                    <svg
+                      id="theme-toggle-dark-icon"
+                      class="w-8 h-8 hidden"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                      ></path>
+                    </svg>
+                    <svg
+                      id="theme-toggle-light-icon"
+                      class="w-8 h-8 hidden"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </button>
+                  <!-- Dark mode switcher end -->
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                    <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-200 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li>
+                        <a href="/index.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+                        </li>
+                        <li>
+                        <a href="/about.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About Me</a>
+                      </li>
+                        <li>
+                        <a href="/projects.html" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500">Projects</a>
+                      </li>    
+                        <li>
+                            <a href="https://github.com/OLeather">
+                                <img class="w-6 h-6 invert dark:invert-0" src="/images/github-mark.svg" alt="user photo">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/owenleather/">
+                                <img class="w-6 h-6 invert dark:invert-0" src="/images/linkedin-in.svg" alt="user photo">
+                            </a>
+                        </li>       
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <script src="/js/main.js"></script>        <div id="contentDiv" class="max-w-screen-xl flex flex-wrap items-center gap-4 mx-auto pt-10 columns-1" style="margin-top: 68px">
+        <h1 id="motion-control">Motion Control</h1>
+<p>While I was a student on FIRST Robotics Team 1351, I implemented many motion control algorithms onto our robot. Motion control interested me because I found it fascinating to get faster, more precise, and more efficient movement out of a robotic mechanisms using code and mathematics.</p>
+<video src="/images/videos/IMG-2423.MOV" class="h-96 aspect-video" controls="">
+</video>
+<h4 id="autonomous-motion-control">Autonomous Motion Control</h4>
+<h2 id="library">Library</h2>
+<p>Throughout my time on the team, I developed a large library that features many different motion control algorithms. <i class="fa fa-github"></i> <a href="https://github.com/MittyRobotics/tko-libraries">tko-libraries</a> Although motion control in robotics is very well documented and there are existing libraries that exist to implement many of these algorithms, I wanted to truly understand how they worked myself, so I researched and recreated many of them in my library. I also created some of my own algorithms in the library.</p>
+<h2 id="motion-profiling">Motion Profiling</h2>
+<p>Motion profiling was the first challenge I tackled. A "motion profile" is essentially a graph of a mechanism's state (position, velocity, acceleration, etc) over time. Motion profiles try to move the mechanism to a desired state while maintaining certain constraints about the mechanism, such as it's maximum velocity, acceleration, etc, which makes the motion smoother and safer for the mechanism. I implemented both a trapezoidal motion profile (which takes in 2 constraints: max velocity and acceleration) and an s-curve motion profile (which takes in 3 constraints: max velocity, acceleration, and jerk). The greater the number of constraints the profile takes in, the smoother the motion becomes but the more complicated the motion profile gets to calculate. Despite the challenges of increasing the number of constraints, I recently wanted to try achieving a long-term goal of mine: to create a motion profile that can be calculated given any number of constraints. Generally motion profiles are fixed to a certain number of constraints, but using a recursive calculus-based algorithm, I was able to create a motion profile that takes in any number of constraints and calculates a trajectory for a mechanism to reach it's desired state. From what I know, this is the first motion profile generator that can take in any number of constraints. <i class="fa fa-github"></i> <a href="https://github.com/OLeather/control-theory/blob/main/control-motion/src/commonMain/kotlin/control/profiles/NMotionProfile.kt">N-th Degree Motion Profile Generator</a></p>
+<video src="/images/videos/IMG-1480.MOV" class="h-96 aspect-video" controls="">
+</video>
+<h4 id="first-implementation-of-motion-profile-in-2019">First Implementation of Motion Profile in 2019</h4>
+<h2 id="autonomous-navigation">Autonomous Navigation</h2>
+<p>The next motion control algorithm I wanted to implement was an autonomous navigation system. In recent times, spline drivetrain following algorithms have been quite common in FRC, but I wanted to tackle a common issue with most of them that I've seen, which is their inefficiency when it comes to initial calculations. Generally, a trajectory must be calculated all at once in order to ensure the robot doesn't move too fast around corners or violate any of it's constraints (max velocity, acceleration, angular velocity, etc). I worked on developing an entirely realtime autonomous navigation system, which can generate paths and plan it's trajectory without any pre-calculations required. In fact, the trajectory itself can be changed at any point during the following without taking a performance hit. It works similar to a road paver: it paves the road ahead of it while driving on the road behind it. The trajectory is generated as the robot follows it, generating future points as it traverses prior points. The robot's constraints are maintained by sampling future points of the trajectory and ensuring that the robot's current state will not violate any of it's future required states. The result is an entirely realtime autonomous navigation system that allows the robot to follow spline paths while maintaining the drivetrain's linear and angular motion constraints. <i class="fa fa-github"></i> <a href="https://github.com/MittyRobotics/tko-libraries/blob/main/motion/src/commonMain/kotlin/com.github.mittyrobotics.motion/profiles/PathMotionProfile.kt">Dynamic Drivetrain Trajectory Generator</a></p>
+<video src="/images/videos/main-video-3.mp4" class="h-96 aspect-video" controls="">
+</video>
+<h4 id="autonomous-navigation-simulations">Autonomous Navigation Simulations</h4>
+<h2 id="turret-lock-system">Turret Lock System</h2>
+<p>During the 2021 season, I developed a turret lock system that allowed our robot's turret mechanism to lock onto a target on the field to shoot balls into, and could even score balls into the target while the robot was in motion. The system worked by combining computer vision 3D position calculations with onboard sensors measuring the drivetrain's velocity to create an accurate field-relative estimation of the robot's position. The sensors were combined using a Kalman Filter, which combines the noisy but absolute position from computer vision localization with the less noisy but drift-prone onboard encoder sensors to calculate the most likely position at any given time. Using a good estimation of the robot's state on the field (including absolute position and velocity), a control loop was developed to allow the turret to be aimed at a target location on the field and even counteract the robot's motion to score balls while the robot is in motion.</p>
+<video src="/images/videos/main-video-5.mp4" class="h-96 aspect-video" controls="">
+</video>
+<h4 id="turret-lock-demonstration">Turret Lock Demonstration</h4>
+<h2 id="awards">Awards</h2>
+<p><img src="/images/cv/award1.jpg" class="object-cover h-96 aspect-square mx-auto"></img></p>
+<h4 id="awards-1">Awards</h4>
+<p>In 2021, our team won the Autonomous Award sponsored by Ford at our regional FRC tournament for the turret lock system, featuring a combination of computer vision and motion control.</p>
+        </div>
+
+    </body>
+    <script src="/js/post.js"></script>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="UTF-8">
+    <title>Turret Lock</title>
+    <link rel="stylesheet" href="/css/syntax.css">
+    <link href="/css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script>
+        // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
+        if (
+          localStorage.getItem('color-theme') === 'dark' ||
+          (!('color-theme' in localStorage) &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      </script>
+</head>
+    <body class="bg-slate-100 dark:bg-slate-800 mb-10">
+        <nav class="bg-gray-200 dark:bg-gray-900 fixed w-full z-20 top-0 left-0">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="/index.html" class="flex items-center">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">OL</span>
+                </a>
+                <div class="flex md:order-2">
+                    <!-- Dark mode switcher -->
+                    <button
+                    id="theme-toggle"
+                    type="button"
+                    class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-900 rounded-lg text-sm p-2.5"
+                  >
+                    <svg
+                      id="theme-toggle-dark-icon"
+                      class="w-8 h-8 hidden"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                      ></path>
+                    </svg>
+                    <svg
+                      id="theme-toggle-light-icon"
+                      class="w-8 h-8 hidden"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </button>
+                  <!-- Dark mode switcher end -->
+                </div>
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                    <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-gray-200 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li>
+                        <a href="/index.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+                        </li>
+                        <li>
+                        <a href="/about.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About Me</a>
+                      </li>
+                        <li>
+                        <a href="/projects.html" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500">Projects</a>
+                      </li>    
+                        <li>
+                            <a href="https://github.com/OLeather">
+                                <img class="w-6 h-6 invert dark:invert-0" src="/images/github-mark.svg" alt="user photo">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/owenleather/">
+                                <img class="w-6 h-6 invert dark:invert-0" src="/images/linkedin-in.svg" alt="user photo">
+                            </a>
+                        </li>       
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <script src="/js/main.js"></script>        <div id="contentDiv" class="max-w-screen-xl flex flex-wrap items-center gap-4 mx-auto pt-10 columns-1" style="margin-top: 68px">
+        <h1 id="turret-lock-system">Turret Lock System</h1>
+<video src="/images/videos/robot-video.mp4" class="w-full" controls="">
+</video>
+<h4 id="turret-lock-demonstration">Turret Lock Demonstration</h4>
+<p>During the 2021 season, I developed a turret lock system that allowed our robot's turret mechanism to lock onto a target on the field to shoot balls into, and could even score balls into the target while the robot was in motion. The system worked by combining computer vision 3D position calculations with onboard sensors measuring the drivetrain's velocity to create an accurate field-relative estimation of the robot's position. The sensors were combined using a Kalman Filter, which combines the noisy but absolute position from computer vision localization with the less noisy but drift-prone onboard encoder sensors to calculate the most likely position at any given time. Using a good estimation of the robot's state on the field (including absolute position and velocity), a control loop was developed to allow the turret to be aimed at a target location on the field and even counteract the robot's motion to score balls while the robot is in motion.</p>
+<video src="/images/videos/IMG-4064.mp4" class="w-1/2 mx-auto" controls="">
+</video>
+<h4 id="kalman-filter-pose-estimation">Kalman Filter Pose Estimation</h4>
+<h2 id="source-code">Source Code</h2>
+<p>The main turret control loop is found under <i class="fa fa-github"></i> <a href="https://github.com/MittyRobotics/tko2020/blob/c16df7195f4e10d1a7d97ec1ba8e98f49038f9f1/src/main/java/com/github/mittyrobotics/autonomous/Autonomous.java">Autonomous.java</a> file in the GitHub repository for our team's 2020-2021 robot. The Autonomous service deals with controlling the turret and shooter subsystems based on the turret lock control algorithm. It relies upon the <i class="fa fa-github"></i> <a href="https://github.com/MittyRobotics/tko2020/blob/c16df7195f4e10d1a7d97ec1ba8e98f49038f9f1/src/main/java/com/github/mittyrobotics/autonomous/util/RobotPositionTracker.java">RobotPositionTracker.java</a> service which is a kalman filter-based pose estimator. It also uses the <i class="fa fa-github"></i> <a href="https://github.com/MittyRobotics/tko2020/blob/c16df7195f4e10d1a7d97ec1ba8e98f49038f9f1/src/main/java/com/github/mittyrobotics/autonomous/Vision.java">Vision.java</a> service which localizes the robot according to perceived vision targets. The code relies upon my controls library, <i class="fa fa-github"></i> <a href="https://github.com/MittyRobotics/tko-libraries-legacy">tko-libraries-legacy</a> for mathematics helper functions, geometry classes, and robot kinematics calculations.</p>
+<h2 id="explanation-of-code">Explanation of Code</h2>
+<p>The first step of the turret lock system is to collect all the data required for the control loops. Most notably, the current pose and dynamics estimations are gathered from the RobotPositionTracker service, as well as info about the vision target's perceived location from the Vision service. Future robot pose is also roughly predicted given current robot dynamics, which is used for a velocity feedforward on the turret.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>(){</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="co">//Update delta time</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="dt">double</span> time = <span class="bu">Timer</span>.<span class="fu">getFPGATimestamp</span>();</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="dt">double</span> dt = lastTime == <span class="dv">0</span>? <span class="fl">0.</span><span class="bn">02</span>:time-lastTime;</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    lastTime = time;</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="co">//Get vision angle and vision angle velocity from Vision</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    <span class="dt">double</span> visionAngle = visionAngleFilter.<span class="fu">calculate</span>(Vision.<span class="fu">getInstance</span>().<span class="fu">getLatestTarget</span>().<span class="fu">yaw</span>.<span class="fu">getDegrees</span>());</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="dt">double</span> visionAngleVelocity = (visionAngle-lastVisionAngle)/dt;</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    lastVisionAngle = visionAngle;</span>
+<span id="cb1-11"><a href="#cb1-11"></a></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    <span class="co">//Get vision distance from Vision</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="dt">double</span> visionDistance = visionDistanceFilter.<span class="fu">calculate</span>(Vision.<span class="fu">getInstance</span>().<span class="fu">getLatestTarget</span>().<span class="fu">distance</span>);</span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a>    <span class="co">//Get the robot&#39;s current velocity transform relative to the field and current velocity state</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="bu">Transform</span> fieldVelocity = RobotPositionTracker.<span class="fu">getInstance</span>().<span class="fu">getFilterState</span>().<span class="fu">getRotatedVelocityTransform</span>(</span>
+<span id="cb1-17"><a href="#cb1-17"></a>            RobotPositionTracker.<span class="fu">getInstance</span>().<span class="fu">getFilterTransform</span>().<span class="fu">getRotation</span>());</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    <span class="co">//Filter field velocity</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>    <span class="co">//    fieldVelocity = new Transform(</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>    <span class="co">//            fieldVelocityYFilter.calculate(fieldVelocity.getPosition().getY()),</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>    <span class="co">//            fieldVelocityXFilter.calculate(fieldVelocity.getPosition().getX()),</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>    <span class="co">//            fieldVelocityRotFilter.calculate(fieldVelocity.getRotation().getRadians())</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>    <span class="co">//    );</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a>    <span class="co">//Get current robot transform</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>    <span class="bu">Transform</span> currentRobotTransform = RobotPositionTracker.<span class="fu">getInstance</span>().<span class="fu">getFilterTransform</span>();</span>
+<span id="cb1-27"><a href="#cb1-27"></a>    <span class="co">//Predict next robot transform given current transform and velocity</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>    <span class="bu">Transform</span> nextRobotTransform = fieldVelocity.<span class="fu">multiply</span>(dt).<span class="fu">add</span>(currentRobotTransform);</span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a>    <span class="co">//Calculate current field rotation from robot to target</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>    <span class="dt">double</span> currentFieldRotation = AutonCoordinates.<span class="fu">SCORING_TARGET</span>.<span class="fu">angleTo</span>(currentRobotTransform.<span class="fu">getPosition</span>()).<span class="fu">getDegrees</span>();</span>
+<span id="cb1-32"><a href="#cb1-32"></a>    <span class="co">//Calculate next field rotation from robot to target</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a>    <span class="dt">double</span> nextFieldRotation = AutonCoordinates.<span class="fu">SCORING_TARGET</span>.<span class="fu">angleTo</span>(nextRobotTransform.<span class="fu">getPosition</span>()).<span class="fu">getDegrees</span>();</span>
+<span id="cb1-34"><a href="#cb1-34"></a>    <span class="co">//Calculate change in field rotation over change in time for linear movement</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>    <span class="dt">double</span> linearRotationVelocity = -(nextFieldRotation-currentFieldRotation)/dt;</span>
+<span id="cb1-36"><a href="#cb1-36"></a>    <span class="co">//Calculate shooter RPM and turret output</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a>    autoShooterRPM = <span class="fu">calculateShooter</span>(visionDistance, fieldVelocity);</span>
+<span id="cb1-38"><a href="#cb1-38"></a>    autoTurretOutput = <span class="fu">calculateTurret</span>(visionAngle, visionAngleVelocity, linearRotationVelocity, fieldVelocity, dt);</span>
+<span id="cb1-39"><a href="#cb1-39"></a>}</span></code></pre></div>
+<p>The RobotPositionTracker service uses a simplified kalman filter that estimates 2D field pose based on drivetrain kinematics and computer vision 3D localization. Shown below are the input functions for kinematics state measurements and vision measurements.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">public</span> <span class="dt">void</span> <span class="fu">addStateMeasurement</span>(DrivetrainState measurement){</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="dt">double</span> time = <span class="bu">Timer</span>.<span class="fu">getFPGATimestamp</span>();</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="dt">double</span> dt = time-lastStateMeasurementTime;</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    lastStateMeasurementTime = time;</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="bu">Position</span> deltaPosition = measurement.<span class="fu">getRotatedVelocityTransform</span>(<span class="fu">getFilterTransform</span>().<span class="fu">getRotation</span>()).<span class="fu">multiply</span>(dt).<span class="fu">getPosition</span>();</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    SimpleMatrix u = <span class="kw">new</span> <span class="fu">SimpleMatrix</span>(<span class="kw">new</span> <span class="dt">double</span>[][]{</span>
+<span id="cb2-7"><a href="#cb2-7"></a>            {deltaPosition.<span class="fu">getX</span>()/dt},</span>
+<span id="cb2-8"><a href="#cb2-8"></a>            {deltaPosition.<span class="fu">getY</span>()/dt}</span>
+<span id="cb2-9"><a href="#cb2-9"></a>    });</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    filter.<span class="fu">predict</span>(u);</span>
+<span id="cb2-11"><a href="#cb2-11"></a>}</span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="kw">public</span> <span class="dt">void</span> <span class="fu">addVisionMeasurement</span>(<span class="bu">Position</span> visionPosition){</span>
+<span id="cb2-14"><a href="#cb2-14"></a>    SimpleMatrix z = <span class="kw">new</span> <span class="fu">SimpleMatrix</span>(<span class="kw">new</span> <span class="dt">double</span>[][]{</span>
+<span id="cb2-15"><a href="#cb2-15"></a>            {visionPosition.<span class="fu">getX</span>()},</span>
+<span id="cb2-16"><a href="#cb2-16"></a>            {visionPosition.<span class="fu">getY</span>()},</span>
+<span id="cb2-17"><a href="#cb2-17"></a>            {filter.<span class="fu">getxHat</span>().<span class="fu">get</span>(<span class="dv">2</span>)},</span>
+<span id="cb2-18"><a href="#cb2-18"></a>            {filter.<span class="fu">getxHat</span>().<span class="fu">get</span>(<span class="dv">3</span>)}</span>
+<span id="cb2-19"><a href="#cb2-19"></a>    });</span>
+<span id="cb2-20"><a href="#cb2-20"></a>    filter.<span class="fu">correct</span>(z);</span>
+<span id="cb2-21"><a href="#cb2-21"></a>}</span></code></pre></div>
+<p>The Vision service uses the 2D coordinates of the target from the vision camera and some physical parameters of the target (i.e., it's height from the ground and location on the field) to derive a 3D pose estimation. That is used by the RobotPositionTracker's kalman filter as a global pose estimate. Safety checks are also done to ensure vision data is recent and reasonable compared to previous data and known constants of the field. If vision data is not currently safe to use, the pose estimator can continue to run using only drivetrain kinematics state estimates, and will be corrected as soon as vision data is safe again.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="co">//Update limelight values</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    Limelight.<span class="fu">getInstance</span>().<span class="fu">updateLimelightValues</span>();</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="co">//Get limelight pitch and yaw</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>    Rotation llYaw = Rotation.<span class="fu">fromDegrees</span>(Limelight.<span class="fu">getInstance</span>().<span class="fu">getYawToTarget</span>()).<span class="fu">inverse</span>();</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    Rotation llPitch = Rotation.<span class="fu">fromDegrees</span>(Limelight.<span class="fu">getInstance</span>().<span class="fu">getPitchToTarget</span>());</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="co">//Calculate distance to target</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="dt">double</span> distance = <span class="fu">calculateDistanceToTarget</span>(llPitch);</span>
+<span id="cb3-9"><a href="#cb3-9"></a>    <span class="co">//Update latest vision target</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>    latestTarget = <span class="kw">new</span> <span class="fu">VisionTarget</span>(llYaw, llPitch, distance);</span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a>    <span class="co">//Get robot and turret transforms</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>    Rotation robotRotation = RobotPositionTracker.<span class="fu">getInstance</span>().<span class="fu">getFilterTransform</span>().<span class="fu">getRotation</span>();</span>
+<span id="cb3-14"><a href="#cb3-14"></a>    Rotation turretRotation = TurretSubsystem.<span class="fu">getInstance</span>().<span class="fu">getRotation</span>();</span>
+<span id="cb3-15"><a href="#cb3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16"></a>    <span class="co">//Calculate camera transform relative to target</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>    <span class="bu">Transform</span> cameraTransform = Vision.<span class="fu">getInstance</span>().<span class="fu">calculateCameraRelativeTransform</span>(latestTarget);</span>
+<span id="cb3-18"><a href="#cb3-18"></a>    <span class="co">//Calculate turret transform relative to target</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a>    <span class="bu">Transform</span> turretTransform = Vision.<span class="fu">getInstance</span>().<span class="fu">calculateTurretRelativeTransform</span>(cameraTransform);</span>
+<span id="cb3-20"><a href="#cb3-20"></a></span>
+<span id="cb3-21"><a href="#cb3-21"></a>    <span class="co">//Calculate turret transform relative to field</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a>    <span class="bu">Transform</span> transformEstimate = Vision.<span class="fu">getInstance</span>().<span class="fu">calculateTurretFieldTransform</span>(turretTransform, turretRotation, robotRotation);</span>
+<span id="cb3-23"><a href="#cb3-23"></a>    cameraTransform.<span class="fu">setPosition</span>(<span class="kw">new</span> <span class="bu">Position</span>(</span>
+<span id="cb3-24"><a href="#cb3-24"></a>            xFilter.<span class="fu">calculate</span>(latestTurretTransformEstimate.<span class="fu">getPosition</span>().<span class="fu">getX</span>()),</span>
+<span id="cb3-25"><a href="#cb3-25"></a>            yFilter.<span class="fu">calculate</span>(latestTurretTransformEstimate.<span class="fu">getPosition</span>().<span class="fu">getY</span>())</span>
+<span id="cb3-26"><a href="#cb3-26"></a>    ));</span>
+<span id="cb3-27"><a href="#cb3-27"></a></span>
+<span id="cb3-28"><a href="#cb3-28"></a>    <span class="kw">if</span>((<span class="bu">Math</span>.<span class="fu">abs</span>(transformEstimate.<span class="fu">getPosition</span>().<span class="fu">subtract</span>(latestRobotTransformEstimate.<span class="fu">getPosition</span>()).<span class="fu">getX</span>()) &gt; <span class="dv">30</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a>            || <span class="bu">Math</span>.<span class="fu">abs</span>(transformEstimate.<span class="fu">getPosition</span>().<span class="fu">subtract</span>(latestRobotTransformEstimate.<span class="fu">getPosition</span>()).<span class="fu">getX</span>()) &gt; <span class="dv">30</span>) &amp;&amp;</span>
+<span id="cb3-30"><a href="#cb3-30"></a>            (latestRobotTransformEstimate.<span class="fu">getPosition</span>().<span class="fu">getX</span>() != <span class="dv">0</span> &amp;&amp; latestRobotTransformEstimate.<span class="fu">getPosition</span>().<span class="fu">getY</span>() != <span class="dv">0</span>)){</span>
+<span id="cb3-31"><a href="#cb3-31"></a>        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(<span class="st">&quot;Warning: Inacurate Vision Data&quot;</span>);</span>
+<span id="cb3-32"><a href="#cb3-32"></a>        visionSafe = <span class="kw">false</span>;</span>
+<span id="cb3-33"><a href="#cb3-33"></a>    }</span>
+<span id="cb3-34"><a href="#cb3-34"></a>    <span class="kw">else</span>{</span>
+<span id="cb3-35"><a href="#cb3-35"></a>        visionSafe = <span class="kw">true</span>;</span>
+<span id="cb3-36"><a href="#cb3-36"></a></span>
+<span id="cb3-37"><a href="#cb3-37"></a>        latestTurretTransformEstimate = transformEstimate;</span>
+<span id="cb3-38"><a href="#cb3-38"></a></span>
+<span id="cb3-39"><a href="#cb3-39"></a>        <span class="co">//Calculate robot transform relative to field</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a>        latestRobotTransformEstimate = Vision.<span class="fu">getInstance</span>().<span class="fu">calculateRobotFieldTransform</span>(latestTurretTransformEstimate, robotRotation);</span>
+<span id="cb3-41"><a href="#cb3-41"></a>    }</span>
+<span id="cb3-42"><a href="#cb3-42"></a>}</span></code></pre></div>
+<p>The control loops for both the shooter flywheel and the turret subsystems are below. The shooter uses a simplified control loop that is simply shifted up or down linearly according to the perpendicular component of the robot's velocity relative to the target. This was deemed acceptable given the normal operation of the system. The turret control loop is a multi-stage cascade control loop utilizing primarily PID loops. It controls the turret using a main position loop and a secondary velocity loop. It aims to first counteract the robot's angular velocity to maintain a constant heading in space, then adjusts the heading to point towards the target's 3D location in space, then compensates for ball trajectory in air by shifting left or right based on the robot's parallel velocity component to the target. Finally, future predicted motion is used as a velocity feedforward to improve tracking accuracy while the robot is in motion.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">private</span> <span class="dt">double</span> <span class="fu">calculateShooter</span>(<span class="dt">double</span> visionDistance, <span class="bu">Transform</span> fieldVelocity){</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="co">//Shooter calculations</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="dt">double</span> visionRPM = <span class="fu">getRPMFromTable</span>(visionDistance);</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="dt">double</span> fieldVelocityRPM = <span class="bu">Math</span>.<span class="fu">abs</span>(fieldVelocity.<span class="fu">getPosition</span>().<span class="fu">getX</span>())* LINEAR_VELOCITY_X_GAIN;</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="kw">return</span> visionRPM + fieldVelocityRPM;</span>
+<span id="cb4-6"><a href="#cb4-6"></a>}</span>
+<span id="cb4-7"><a href="#cb4-7"></a></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="kw">private</span> <span class="dt">double</span> <span class="fu">calculateTurret</span>(<span class="dt">double</span> visionAngle, <span class="dt">double</span> visionAngleVelocity, <span class="dt">double</span> linearRotationVelocity, <span class="bu">Transform</span> fieldVelocity, <span class="dt">double</span> dt){</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="co">//Calculate Y motion offset</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>    <span class="dt">double</span> yVelocityOffset = -fieldVelocity.<span class="fu">getPosition</span>().<span class="fu">getY</span>()* LINEAR_VELOCITY_Y_GAIN* <span class="bu">Math</span>.<span class="fu">signum</span>(fieldVelocity.<span class="fu">getPosition</span>().<span class="fu">getX</span>());</span>
+<span id="cb4-11"><a href="#cb4-11"></a>    <span class="co">//Add x motion offset to vision angle</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>    <span class="dt">double</span> offsetVision = visionAngle + yVelocityOffset;</span>
+<span id="cb4-13"><a href="#cb4-13"></a>    <span class="co">//Calculate vision angle PID</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>    <span class="dt">double</span> pidVoltage = offsetVision* VISION_P + visionAngleVelocity* VISION_D;</span>
+<span id="cb4-15"><a href="#cb4-15"></a></span>
+<span id="cb4-16"><a href="#cb4-16"></a>    <span class="co">//Counteract the current field rotation velocity</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>    <span class="dt">double</span> counteractFieldRotationVelocity = fieldVelocity.<span class="fu">getRotation</span>().<span class="fu">getDegrees</span>()* <span class="bu">Math</span>.<span class="fu">signum</span>(-fieldVelocity.<span class="fu">getPosition</span>().<span class="fu">getX</span>());</span>
+<span id="cb4-18"><a href="#cb4-18"></a></span>
+<span id="cb4-19"><a href="#cb4-19"></a>    <span class="co">//Counteract the linear movement velocity</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a>    <span class="dt">double</span> counteractLinearMovementVelocity = linearRotationVelocity* LINEAR_MOVEMENT_ROTATION_VELOCITY_GAIN* <span class="bu">Math</span>.<span class="fu">signum</span>(fieldVelocity.<span class="fu">getPosition</span>().<span class="fu">getX</span>());</span>
+<span id="cb4-21"><a href="#cb4-21"></a></span>
+<span id="cb4-22"><a href="#cb4-22"></a>    <span class="kw">if</span>(DriverStation.<span class="fu">getInstance</span>().<span class="fu">isEnabled</span>()){</span>
+<span id="cb4-23"><a href="#cb4-23"></a>        <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(linearRotationVelocity + <span class="st">&quot; &quot;</span> + counteractLinearMovementVelocity + <span class="st">&quot; &quot;</span> + counteractFieldRotationVelocity + <span class="st">&quot; &quot;</span> + fieldVelocity ) ;</span>
+<span id="cb4-24"><a href="#cb4-24"></a>    }</span>
+<span id="cb4-25"><a href="#cb4-25"></a></span>
+<span id="cb4-26"><a href="#cb4-26"></a></span>
+<span id="cb4-27"><a href="#cb4-27"></a>    <span class="dt">double</span> oldF = TURRET_VELOCITY_F;</span>
+<span id="cb4-28"><a href="#cb4-28"></a>    TURRET_VELOCITY_F = fieldVelocity.<span class="fu">getPosition</span>().<span class="fu">getX</span>() &lt; <span class="dv">0</span>? <span class="dv">12</span>/<span class="fl">300.</span><span class="dv">0</span> : oldF;</span>
+<span id="cb4-29"><a href="#cb4-29"></a></span>
+<span id="cb4-30"><a href="#cb4-30"></a>    <span class="co">//Calculate final counteraction velocity with countracted field rotation and counteracted linear movement</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a>    <span class="dt">double</span> desiredVelocity = counteractFieldRotationVelocity+counteractLinearMovementVelocity;</span>
+<span id="cb4-32"><a href="#cb4-32"></a></span>
+<span id="cb4-33"><a href="#cb4-33"></a>    <span class="co">//Turret PF loop</span></span>
+<span id="cb4-34"><a href="#cb4-34"></a>    <span class="dt">double</span> velVoltage = desiredVelocity* TURRET_VELOCITY_F +</span>
+<span id="cb4-35"><a href="#cb4-35"></a>            (desiredVelocity-TurretSubsystem.<span class="fu">getInstance</span>().<span class="fu">getVelocity</span>()) * TURRET_VELOCITY_P;</span>
+<span id="cb4-36"><a href="#cb4-36"></a></span>
+<span id="cb4-37"><a href="#cb4-37"></a>    TURRET_VELOCITY_F = oldF;</span>
+<span id="cb4-38"><a href="#cb4-38"></a>    <span class="co">//Combine position and velocity loop outputs</span></span>
+<span id="cb4-39"><a href="#cb4-39"></a>    <span class="dt">double</span> turretVoltage = pidVoltage + velVoltage;</span>
+<span id="cb4-40"><a href="#cb4-40"></a></span>
+<span id="cb4-41"><a href="#cb4-41"></a>    <span class="co">//return percent output</span></span>
+<span id="cb4-42"><a href="#cb4-42"></a>    <span class="kw">return</span> turretVoltage/<span class="fl">12.</span><span class="dv">0</span>;</span>
+<span id="cb4-43"><a href="#cb4-43"></a>}</span></code></pre></div>
+        </div>
+
+    </body>
+    <script src="/js/post.js"></script>
+</html>

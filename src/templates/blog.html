@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/output.css" rel="stylesheet">
+  <link href="css/background.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.0.3/chroma.min.js"></script>
+  <script>
+    // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
+    if (
+      localStorage.getItem('color-theme') === 'dark' ||
+      (!('color-theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  </script>
+</head>
+<body style="overflow-x: hidden; overflow-y: hidden;">
+      {{>src/generated/nav.html}}
+      
+      <canvas id="canvas" style="filter: blur(0px)"></canvas>
+      
+      <!-- <div class="grid h-screen place-items-center bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://blog.allplan.com/hubfs/EN_Blog/Engineering/Accurate%20Design%20with%20Point%20Clouds/Punktwolke%20GBD%20EG%20002_NEU.png)"> -->
+      <div class="grid h-screen place-items-center content-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 absolute">
+        <div class="columns-1 mx-auto text-center">
+            <div class="text-9xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-violet-600 dark:from-pink-500 dark:to-violet-500">
+                Blog Coming Soon
+              </div>
+            
+        </div>
+      </div>
+      <script src="js/animated-background.js"></script>
+</body>
+</html>
